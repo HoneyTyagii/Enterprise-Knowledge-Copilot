@@ -41,6 +41,9 @@ opentelemetry-exporter-prometheus = "^0.46b0"
 # Vector / hybrid helpers
 pgvector = "^0.2.5"
 
+# S3 / object storage
+boto3 = "^1.34.0"
+
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.2"
 pytest-asyncio = "^0.23.6"
