@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 
-from .config.settings import settings
+from app.config.settings import settings
+from app.workspaces.router import router as workspaces_router
 
 app = FastAPI(title=settings.app_name, version=settings.version)
+app.include_router(workspaces_router)
 
 
 @app.get("/health")
