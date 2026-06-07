@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.venv*/
+.env
+.env.*
+
+# Vector / embeddings / app data
+*.db
+*.sqlite
+/data/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Build artifacts
+build/
+dist/
+
+# Note: keep TODO.md tracked
+!TODO.md
+
