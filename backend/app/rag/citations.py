@@ -19,7 +19,7 @@ def chunk_to_citation(
     chunk: dict[str, Any],
     citation_id: str | None = None,
     location: str | None = None,
-) -> Citation:
+) -> Citation: 
     cid = citation_id or f"doc{chunk['document_id']}:v{chunk['version_id']}:c{chunk['chunk_index']}"
     return Citation(
         citation_id=cid,
