@@ -1,4 +1,15 @@
 services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=ekc
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
   api:
     build:
       context: ./backend
@@ -6,4 +17,14 @@ services:
       - "8000:8000"
     environment:
       - PYTHONUNBUFFERED=1
+      - PGVECTOR_DSN=postgresql+psycopg://postgres:postgres@db:5432/ekc
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - db
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
 
+volumes:
+  pgdata:

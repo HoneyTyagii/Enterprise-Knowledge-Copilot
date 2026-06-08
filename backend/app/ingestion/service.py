@@ -7,6 +7,9 @@ from sqlalchemy.orm import Session
 
 from app.db.models import Document, DocumentChunk
 from app.ingestion.schemas import IngestJobOut
+from app.ingestion.versions import DocumentVersion
+from app.rag.embeddings import embed_texts
+from app.rag.vector_store import ensure_vector_schema, upsert_document_vectors
 
 
 def _safe_decode(data: bytes) -> str:
@@ -18,9 +21,9 @@ def _safe_decode(data: bytes) -> str:
     raise ValueError("Unsupported document encoding")
 
 
-def _chunk_text(text: str, chunk_size: int, chunk_overlap: int) -> List[str]:
+def _chunk_text(text: str, chunk_size: int, chunk_overlap: int) -> list[str]:
     cleaned = " ".join(text.split())
-    chunks: List[str] = []
+    chunks: list[str] = []
     index = 0
     while index < len(cleaned):
         end = min(index + chunk_size, len(cleaned))

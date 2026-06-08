@@ -18,7 +18,7 @@ class Settings(BaseSettings):
 
     # Vector DB
     vector_db_url: str = "http://localhost:6333"  # Qdrant-like; overridden per deployment
-    pgvector_dsn: str = "postgresql://postgres:postgres@localhost:5432/ekc"
+    pgvector_dsn: str = "postgresql+psycopg://postgres:postgres@localhost:5432/ekc"
 
     # Embeddings / LLM
     openai_api_key: str = ""
